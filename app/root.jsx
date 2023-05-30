@@ -1,5 +1,10 @@
-import { Meta, Links } from '@remix-run/react'
-import styles from './styles/index.css'
+// DEPENDENCIAS
+import { Meta, Links, Outlet, Scripts, LiveReload } from '@remix-run/react'
+// ESTILOS
+import styles from '~/styles/index.css'
+// COMPONENTES
+import Header from '~/components/header'
+import Footer from '~/components/footer'
 
 export function meta() {
   return [
@@ -22,7 +27,7 @@ export function links() {
     {
       rel: 'preconnect',
       href: 'https://fonts.gstatic.com',
-      crossorigin: 'true'
+      crossOrigin: 'true'
     },
     {
       rel: 'stylesheet',
@@ -38,7 +43,7 @@ export function links() {
 export default function App() {
   return (
     <Document>
-      <h1>Hola Mundo desde Remix</h1>
+      <Outlet />
     </Document>
   )
 }
@@ -51,7 +56,13 @@ function Document({ children }) {
         <Links />
       </head>
 
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+        <Scripts />
+        <LiveReload />
+      </body>
     </html>
   )
 }
