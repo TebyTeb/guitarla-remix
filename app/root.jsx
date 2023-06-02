@@ -1,5 +1,14 @@
 // DEPENDENCIAS
-import { Meta, Links, Outlet, Scripts, LiveReload } from '@remix-run/react'
+import {
+  Meta,
+  Link,
+  Links,
+  Outlet,
+  Scripts,
+  LiveReload,
+  useRouteError,
+  isRouteErrorResponse
+} from '@remix-run/react'
 // ESTILOS
 import styles from '~/styles/index.css'
 // COMPONENTES
@@ -64,5 +73,31 @@ function Document({ children }) {
         <LiveReload />
       </body>
     </html>
+  )
+}
+
+/** Manejo de errores */
+export function ErrorBoundary() {
+
+  const error = useRouteError()
+
+  if (isRouteErrorResponse(error)) {
+    return (
+      <Document>
+        <p className='error'>
+          Status: {error.status} - {error.statusText}
+        </p>
+        <Link className='error-enlace' to='/'>Tal vez quieras volver a la página principal</Link>
+      </Document>
+    )
+  }
+
+  return (
+    <Document>
+      <p className='error'>
+        Status: {error.status} - {error.statusText}
+      </p>
+      <Link className='error-enlace' to='/'>Tal vez quieras volver a la página principal</Link>
+    </Document>
   )
 }
