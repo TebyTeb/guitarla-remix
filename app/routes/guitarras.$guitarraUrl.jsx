@@ -21,7 +21,7 @@ export function meta({ data }) {
   if (!data) {
     return [
       {
-        title: 'Guitarra No Encontrada',
+        title: 'GuitarLA - Guitarra No Encontrada',
         description: 'Guitarras, venta de guitarras, guitarra no encontrada'
       }
     ]
